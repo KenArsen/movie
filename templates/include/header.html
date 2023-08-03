@@ -30,16 +30,16 @@
                 <li>
                     {% if user.is_authenticated %}
                         <span>{{ user.username }}</span>
-                        <a href="#"
+                        <a href="{% url 'account_logout' %}"
                            style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
                             Выход
                         </a>
                     {% else %}
-                        <a href="#"
+                        <a href="{% url 'account_login' %}"
                            style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
                             Вход
                         </a>
-                        <a href="#"
+                         <a href="{% url 'account_signup' %}"
                            style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
                             Регистрация
                         </a>
@@ -47,9 +47,8 @@
                 </li>
 
                 <li>
-                    <form action="#" method="post">{% csrf_token %}
-                        <input name="next" type="hidden"
-                               value="{{ language.code }}/{{ request.get_full_path|slice:'4:' }}">
+                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                        <input name="next" type="hidden" value="{{ language.code }}/{{ request.get_full_path|slice:'4:' }}">
                         <select name="language">
                             {% get_current_language as LANGUAGE_CODE %}
                             {% get_available_languages as LANGUAGES %}
@@ -75,5 +74,8 @@
     <p class="editContent">лучший сайт на django 3</p>
     <h3 class="mb-4 editContent">Все о кино</h3>
     <div class="ban-buttons">
+
+
     </div>
 </div>
+<!--// banner-inner -->
